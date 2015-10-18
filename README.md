@@ -11,7 +11,7 @@ var grid = [
     [ 0, 0, 0, 0, 0 ]
 ];
 
-var Pathfinding = require('.');
+var Pathfinding = require('pathfindingjs');
 
 var finder = new Pathfinding();
 finder.setGrid(grid).setFrom(2, 0).setTo(2, 2).find();
