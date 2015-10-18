@@ -1,5 +1,7 @@
 # Pathfindingjs
 
+Install with `npm install gjuchault/pathfindingjs --save`
+
 Usage :
 
 ```js
