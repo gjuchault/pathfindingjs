@@ -36,7 +36,7 @@ vector<vector<int>> smoothenPath(vector<vector<int>>* path) {
 
     newPath[l] = path->at(path->size() - 1);
 
-    newPath.resize(l);
+    newPath.resize(l + 1);
 
     return newPath;
 }
