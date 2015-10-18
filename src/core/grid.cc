@@ -1,9 +1,9 @@
 #include "grid.hpp"
 
-Grid Grid_constructor(vector<vector<int>> map, int height, int width, int walkerSize) {
+Grid Grid_constructor(vector<vector<int>> map, int height, int width) {
     vector<vector<Node*>> nodes = Grid_buildNodes(height, width, map);
 
-    Grid g = { width, height, walkerSize, nodes };
+    Grid g = { width, height, nodes };
     return g;
 }
 
@@ -36,29 +36,7 @@ bool Grid_isWalkableAt(Grid* grid, int x, int y) {
         return false;
     }
 
-    if (grid->walkerSize == 1) {
-        return grid->nodes[y][x]->walkable;
-    }
-
-    for (int i = y - grid->walkerSize + 1; i <= y + grid->walkerSize - 1; ++i)
-    {
-        if (!Grid_isInside(grid, i, 0)) {
-            return false;
-        }
-
-        for (int j = x - grid->walkerSize + 1; j <= x + grid->walkerSize - 1; ++j)
-        {
-            if (!Grid_isInside(grid, i, j)) {
-                return false;
-            }
-
-            if (!grid->nodes[i][j]->walkable) {
-                return false;
-            }
-        }
-    }
-
-    return true;
+    return grid->nodes[y][x]->walkable;
 }
 
 bool Grid_isInside(Grid* grid, int x, int y) {

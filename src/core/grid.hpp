@@ -15,11 +15,10 @@ using std::fill;
 typedef struct Grid {
     int width;
     int height;
-    int walkerSize;
     vector<vector<Node*>> nodes;
 } Grid;
 
-Grid Grid_constructor(vector<vector<int>> map, int height, int width, int walkerSize);
+Grid Grid_constructor(vector<vector<int>> map, int height, int width);
 
 vector<vector<Node*>> Grid_buildNodes(int width, int height, vector<vector<int>> map);
 

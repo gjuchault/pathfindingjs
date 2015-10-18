@@ -18,12 +18,16 @@ var grid = [
 
 var Pathfinding = require('.');
 
-var finder = new Pathfinding();
+var finder = new Pathfinding(grid, 2);
 var path = finder
-    .setGrid(grid)
     .setFrom(1, 1)
-    .setWalkerSize(2)
     .setTo(13, 2)
+    .find();
+
+console.log(path);
+
+path = finder
+    .setTo(1, 1)
     .find();
 
 console.log(path);

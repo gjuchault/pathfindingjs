@@ -1,5 +1,4 @@
 var Pathfinding = require('.');
-var finder = new Pathfinding();
 
 var grid = [];
 
@@ -25,8 +24,8 @@ for (var i = 1; i < width; i +=2) {
     }
 }
 
+var finder = new Pathfinding(grid);
 finder
-    .setGrid(grid)
     .setFrom(startPos[0], startPos[1])
     .setTo(endPos[0], endPos[1]);
 

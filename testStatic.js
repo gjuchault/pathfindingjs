@@ -8,9 +8,10 @@ var grid = [
 
 var Pathfinding = require('.');
 
-var finder = new Pathfinding();
-finder
-    .setGrid(grid)
+var finder = new Pathfinding(grid);
+var path = finder
     .setFrom(2, 0)
     .setTo(2, 2)
     .find();
+
+console.log(path);

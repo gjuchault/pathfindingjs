@@ -20,6 +20,7 @@ namespace pathfindingjs {
     using v8::Number;
     using v8::Object;
     using v8::String;
+    using v8::Boolean;
     using v8::Array;
     using v8::Value;
 
@@ -27,7 +28,7 @@ namespace pathfindingjs {
     int x0, y0;
     int x1, y1;
     int mapHeight, mapWidth;
-    int walkerSize = 1;
+    Grid grid;
 
     void setGrid (const FunctionCallbackInfo<Value>& args) {
         Isolate* isolate = args.GetIsolate();
@@ -69,22 +70,8 @@ namespace pathfindingjs {
                 map.at(i).at(j) = row->Get(j)->NumberValue() == 1;
             }
         }
-    }
 
-    void setWalkerSize (const FunctionCallbackInfo<Value>& args) {
-        Isolate* isolate = args.GetIsolate();
-
-        if (args.Length() != 1) {
-            isolate->ThrowException(Exception::TypeError(String::NewFromUtf8(isolate, "Wrong number of arguments")));
-            return;
-        }
-
-        if (!args[0]->IsNumber()) {
-            isolate->ThrowException(Exception::TypeError(String::NewFromUtf8(isolate, "Wrong position")));
-            return;
-        }
-
-        walkerSize = args[0]->NumberValue();
+        grid = Grid_constructor(map, mapHeight, mapWidth);
     }
 
     void setFrom (const FunctionCallbackInfo<Value>& args) {
@@ -120,7 +107,6 @@ namespace pathfindingjs {
         x1 = args[0]->NumberValue();
         y1 = args[1]->NumberValue();
 
-        Grid grid         = Grid_constructor(map, mapHeight, mapWidth, walkerSize);
         AStarFinder astar = AStarFinder_constructor(true, true, 1);
 
         if (!Grid_isWalkableAt(&grid, x0, y0)) {
@@ -155,11 +141,32 @@ namespace pathfindingjs {
         }
     }
 
+    void isWalkableAt (const FunctionCallbackInfo<Value>& args) {
+        Isolate* isolate = args.GetIsolate();
+
+        if (args.Length() != 2) {
+            isolate->ThrowException(Exception::TypeError(String::NewFromUtf8(isolate, "Wrong number of arguments")));
+            return;
+        }
+
+        if (!args[0]->IsNumber() || !args[1]->IsNumber()) {
+            isolate->ThrowException(Exception::TypeError(String::NewFromUtf8(isolate, "Wrong position")));
+            return;
+        }
+
+        int x = args[0]->NumberValue();
+        int y = args[1]->NumberValue();
+
+        Local<Boolean> v8bool = Boolean::New(isolate, Grid_isWalkableAt(&grid, x, y));
+
+        args.GetReturnValue().Set(v8bool);
+    }
+
     void module (Local<Object> exports) {
         NODE_SET_METHOD(exports, "setGrid", setGrid);
-        NODE_SET_METHOD(exports, "setWalkerSize", setWalkerSize);
         NODE_SET_METHOD(exports, "setFrom", setFrom);
         NODE_SET_METHOD(exports, "findTo", findTo);
+        NODE_SET_METHOD(exports, "isWalkableAt", isWalkableAt);
     }
 
     NODE_MODULE(pathfindingjs, module)
