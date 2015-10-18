@@ -45,8 +45,6 @@ vector<vector<int>> AStarFinder_findPath(AStarFinder astar, int startX, int star
 
     priority_queue<Node*, vector<Node*>, HeapCompare_f> openList;
 
-    printf("Astar from %d %d to %d %d \n", startX, startY, endX, endY);
-
     startNode->g = 0;
     startNode->f = 0;
     startNode->opened = true;
