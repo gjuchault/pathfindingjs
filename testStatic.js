@@ -13,5 +13,11 @@ var path = finder
     .setFrom(2, 0)
     .setTo(2, 2)
     .find();
-
 console.log(path);
+
+var returnPath = finder
+    .setTo(2, 0)
+    .find();
+console.log(returnPath);
+
+require('assert').deepEqual(path.reverse(), returnPath);

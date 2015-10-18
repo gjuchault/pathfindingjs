@@ -51,7 +51,7 @@ function Pathfinding (grid, walkerSize) {
             throw new Error('Invalid ending point (' + this.x1 + ', ' + this.y1 + ')');
         }
 
-        if (this.x1 === this.y0 && this.y1 === this.y0) {
+        if (this.x1 === this.x0 && this.y1 === this.y0) {
             return true;
         }
 
