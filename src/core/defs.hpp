@@ -3,8 +3,6 @@
 
 #include <cmath> // sqrt(2)
 
-#define MAP_HEIGHT 500
-#define MAP_WIDTH 500
 #define MAX_PATHS MAP_HEIGHT * MAP_WIDTH
 #define MAX_NEIGHBORS 8
 

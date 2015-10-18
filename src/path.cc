@@ -1,5 +1,8 @@
 #include "core/defs.hpp"
 
+#define MAP_HEIGHT 500
+#define MAP_WIDTH 500
+
 #include "core/astar.hpp"
 #include "core/grid.hpp"
 #include "core/smoothenPath.hpp"
