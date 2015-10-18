@@ -123,18 +123,28 @@ namespace pathfindingjs {
         Grid grid         = Grid_constructor(map, mapHeight, mapWidth, walkerSize);
         AStarFinder astar = AStarFinder_constructor(true, true, 1);
 
+        if (!Grid_isWalkableAt(&grid, x0, y0)) {
+            isolate->ThrowException(Exception::TypeError(String::NewFromUtf8(isolate, "Non walkable start case")));
+            return;
+        }
+
+        if (!Grid_isWalkableAt(&grid, x1, y1)) {
+            isolate->ThrowException(Exception::TypeError(String::NewFromUtf8(isolate, "Non walkable end case")));
+            return;
+        }
+
         vector<vector<int>> path = AStarFinder_findPath(astar, x0, y0, x1, y1, &grid);
 
         if (path.size() == 0) {
             args.GetReturnValue().Set(false);
         } else {
-            vector<vector<int>> smoothPath = smoothenPath(&path);
+            // vector<vector<int>> smoothPath = smoothenPath(&path);
 
             Local<Array> v8path = Array::New(isolate);
-            for (unsigned int i = 0; i < smoothPath.size(); ++i) {
+            for (unsigned int i = 0; i < path.size(); ++i) {
                 Local<Array> v8row = Array::New(isolate);
-                for (unsigned int j = 0; j < smoothPath.at(i).size(); ++j) {
-                    Local<Number> v = Number::New(isolate, smoothPath.at(i).at(j));
+                for (unsigned int j = 0; j < path.at(i).size(); ++j) {
+                    Local<Number> v = Number::New(isolate, path.at(i).at(j));
                     v8row->Set(j, v);
                 }
 

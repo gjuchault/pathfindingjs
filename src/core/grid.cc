@@ -43,13 +43,13 @@ bool Grid_isWalkableAt(Grid* grid, int x, int y) {
     for (int i = y - grid->walkerSize + 1; i <= y + grid->walkerSize - 1; ++i)
     {
         if (!Grid_isInside(grid, i, 0)) {
-            continue;
+            return false;
         }
 
         for (int j = x - grid->walkerSize + 1; j <= x + grid->walkerSize - 1; ++j)
         {
             if (!Grid_isInside(grid, i, j)) {
-                continue;
+                return false;
             }
 
             if (!grid->nodes[i][j]->walkable) {
