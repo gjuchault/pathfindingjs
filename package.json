@@ -1,0 +1,14 @@
+{
+  "name": "pathfindingjs",
+  "version": "1.0.0",
+  "main": "pathfindingjs.js",
+  "scripts": {
+    "install": "node-gyp rebuild"
+  },
+  "author": "Gabriel Juchault <gabriel.juchault@gmail.com>",
+  "license": "MIT",
+  "gypfile": true,
+  "dependencies": {
+    "bindings": "^1.2.1"
+  }
+}
