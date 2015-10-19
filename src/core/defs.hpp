@@ -16,6 +16,10 @@
 
 #define CHANGE_X -1
 #define CHANGE_Y 1
+#define CHANGE_NE 2
+#define CHANGE_NW 3
+#define CHANGE_SE 4
+#define CHANGE_SW 5
 #define CHANGE_UNKNOWN 0
 
 #define PRINT_MAP false
