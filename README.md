@@ -103,3 +103,9 @@ console.log(returnPath);
 
 require('assert').deepEqual(path.reverse(), returnPath);
 ```
+
+## Path length
+
+If you want to compare two smoothen paths, you may want to use `Pathfinding.getFullLength(path)`.
+It will return the sum of Manhattan distances between each point. This is useful only on smoothen
+paths.
