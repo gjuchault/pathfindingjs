@@ -1,6 +1,6 @@
 {
   "name": "pathfindingjs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "pathfindingjs.js",
   "scripts": {
     "install": "node-gyp rebuild"

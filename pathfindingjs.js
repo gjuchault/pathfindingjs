@@ -59,7 +59,9 @@ function Pathfinding (grid, walkerSize) {
         this.finder.setFrom(this.x0, this.y0);
         var path = this.finder.findTo(this.x1, this.y1);
 
-        this.setFrom(this.x1, this.y1);
+        if (path && path.length > 0) {
+            this.setFrom(this.x1, this.y1);
+        }
 
         return path;
     };
