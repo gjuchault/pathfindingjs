@@ -114,11 +114,7 @@ function Pathfinding (grid, walkerSize) {
 Pathfinding.getFullLength = function (path) {
     var fullLength = 0;
 
-    for (var i = 0; i < path.length; ++i) {
-        if (path[i + 1] === undefined) {
-            break;
-        }
-
+    for (var i = 0; i < path.length - 1; ++i) {
         var diffX = path[i + 1][0] - path[i][0];
         var diffY = path[i + 1][1] - path[i][1];
         fullLength += Math.abs(diffX) + Math.abs(diffY);

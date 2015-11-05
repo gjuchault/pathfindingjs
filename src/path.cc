@@ -54,7 +54,7 @@ int main () {
     }
 
     // Create the finder
-    Grid grid         = Grid_constructor(map, MAP_HEIGHT, MAP_WIDTH, 1);
+    Grid grid         = Grid_constructor(map, MAP_HEIGHT, MAP_WIDTH);
     AStarFinder astar = AStarFinder_constructor(true, true, 1);
 
     printf("Starting !\n");
