@@ -51,10 +51,20 @@ vector<vector<int>> AStarFinder_findPath(AStarFinder astar, int startX, int star
 
     openList.push(startNode);
 
+    vector<vector<int>> notFound(0);
+
+    if (!Grid_isWalkableAt(grid, startX, startY)) {
+        return notFound;
+    }
+
+    if (!Grid_isWalkableAt(grid, endX, endY)) {
+        return notFound;
+    }
+
     while (!openList.empty()) {
         node = openList.top();
         openList.pop();
-        
+
         node->closed = true;
 
         if (node->x == endNode->x && node->y == endNode->y) {
@@ -90,17 +100,11 @@ vector<vector<int>> AStarFinder_findPath(AStarFinder astar, int startX, int star
                 if (!neighbor->opened) {
                     openList.push(neighbor);
                     neighbor->opened = true;
-                } else {
-                    // Updated an item, sort again the priority queue using make_heap
-                    make_heap(const_cast<Node**>(&openList.top()),
-                              const_cast<Node**>(&openList.top()) + openList.size(),
-                              HeapCompare_f());
                 }
             }
         }
     }
 
-    vector<vector<int>> notFound(0);
     return notFound;
 }
 
