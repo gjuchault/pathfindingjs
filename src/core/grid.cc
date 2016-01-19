@@ -31,7 +31,7 @@ Node* Grid_getNodeAt(Grid* grid, int x, int y) {
     return grid->nodes[y][x];
 }
 
-inline bool Grid_isWalkableAt(Grid* grid, int x, int y) {
+bool Grid_isWalkableAt(Grid* grid, int x, int y) {
     if (!Grid_isInside(grid, x, y)) {
         return false;
     }
